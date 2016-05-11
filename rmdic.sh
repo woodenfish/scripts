@@ -12,12 +12,12 @@ function scandir() {
         cur_dir=$(pwd)
     fi
  
-    for dirlist in $(ls ${cur_dir})
+    for dirlist in $(ls -a ${cur_dir})
     do
         if [ ${dirlist} = $2 ];then
             echo ${dirlist}
             rm -rf ${dirlist}
-        elif test -d ${dirlist};then
+        elif test -d ${dirlist} -a ! ${dirlist} = '.' -a ! ${dirlist} = '..';then
             scandir ${cur_dir}/${dirlist} $2
             cd ..
         fi
